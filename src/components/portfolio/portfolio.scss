@@ -1,0 +1,23 @@
+#portfolio{
+    display: flex;
+    background-color: #f9f9f9;
+    color: #000;
+    padding: 3rem 0;
+
+    h2 {
+        color: #000;
+        margin: 4rem 0;
+    }
+}
+.portfolio {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    .slide {
+        width: 31%;
+        min-height: 350px;
+        background-color: #fff;
+        box-shadow: 0px 6px 15px 0px rgba(212,212,212,1);
+    }
+}
