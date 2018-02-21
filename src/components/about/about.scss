@@ -23,17 +23,17 @@
   
   .about-text {
     padding: 2rem 1rem 6rem 1rem;
-    width: 60%;
+    width: 100%;
+    font-size: 1.125rem;
     p {
-      line-height: 150%;
+      line-height: 29px;
     }
     a {
       color: #ff0000;
       text-decoration: none;
     }
   
-    @media only screen and (max-width : 640px) {
-      padding-left: 2.5em;
-      padding-right: 2.5em;
+    @media screen and (min-width: 992px) {
+      width: 80%;
     }
   }

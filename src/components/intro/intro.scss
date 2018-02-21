@@ -6,23 +6,42 @@
 }
 .intro-text {
     height: 100vh;
-    width: 57%;
+    width: 80%;
     display: flex;
     flex-direction: column;
-    padding-top: 360px;
+    justify-content: flex-end;
+    padding-bottom: 5rem;
 
     h1 {
-        font-size: 5rem;
+        font-size: 3rem;
         font-family: 'Source Sans Pro', sans-serif;
         font-weight: 300;
     }
     
     p {
-        font-size: 1.5rem;
+        font-size: 1.25rem;
         line-height: 30px;
         font-family: 'Lato', sans-serif;
     }
+
+    @media screen and (min-width: 576px) {
+      width: 57%;
+
+      h1 {
+        font-size: 4rem;
+      }
+      p {
+        font-size: 1.5rem;
+      }
+  }
+  
+  @media screen and (min-width: 992px) {
+     h1 {
+       font-size: 5rem;
+     }
+  }
 }
+
 .c-primary {
     color: #ff5252;
 }

@@ -1,11 +1,21 @@
-const gulp = require('gulp'),
-	sass = require('gulp-sass'),
-	uglify = require('gulp-uglify'),
-	imagemin = require('gulp-imagemin'),
-	cache = require('gulp-cache'),
+const gulp = require('gulp');
+	del = require('del'),
 	concat = require('gulp-concat'),
-	plumber = require('gulp-plumber'),
-	browserSync = require('browser-sync').create();
+	uglify = require('gulp-uglify'),
+	sass = require('gulp-sass'),
+	autoprefixer = require('gulp-autoprefixer'),
+	imagemin = require('gulp-imagemin'),
+	pngquant = require('imagemin-pngquant'),
+	gulpsync = require('gulp-sync')(gulp),
+	gutil = require('gulp-util'),
+	flatten = require('gulp-flatten'),
+	browserSync = require('browser-sync').create(),
+	browserify = require('browserify'),
+	source = require('vinyl-source-stream'),
+	buffer = require('vinyl-buffer'),
+	sourcemaps = require('gulp-sourcemaps'),
+	notifier = require('node-notifier');
+
 
 gulp.task('browserSync', function () {
 	browserSync.init({
@@ -16,9 +26,23 @@ gulp.task('browserSync', function () {
 	})
 });
 
+// CSS
 gulp.task('sass', function () {
 	return gulp.src('./src/**/*.scss')
-		.pipe(plumber())
+		.pipe(sass.sync({
+			includePaths: ['node_modules/']
+		}).on('error', function (err) {
+			notifier.notify({
+				'title': 'Compile Error',
+				'message': err.message,
+				'sound': true
+			});
+			gutil.log(gutil.colors.red('ERROR:', err.message));
+			this.emit('end');
+		}))
+		.pipe(autoprefixer({
+			browsers: ['last 30 versions']
+		}))
 		.pipe(sass({
 			outputStyle: 'compressed'
 		}))
@@ -29,24 +53,40 @@ gulp.task('sass', function () {
 		}))
 });
 
-gulp.task('uglify', function () {
-	gulp.src('./src/js/**/*.js')
-		.pipe(plumber())
-		.pipe(concat('main.js'))
-		.pipe(uglify())
-		.pipe(gulp.dest('./dist/js'))
-})
+// JavaScript
+gulp.task('browserify', function() {
+	return browserify('./src/js/main.js')
+	  .transform("babelify", {presets: ["es2015"]})
+	  .bundle()
+	  .on('error', function(err) {
+		gutil.log(gutil.colors.red('ERROR:', err.message));
+		notifier.notify({
+		  'title': 'Compile Error',
+		  'message': err.message,
+		  'sound': true
+		});
+		this.emit('end');
+	  })
+	  .pipe(source('main.js'))
+	  .pipe(buffer())
+	  .pipe(uglify())
+	  .pipe(gulp.dest('./dist/js/'))
+	  .pipe(browserSync.stream());
+  });
 
-gulp.task('images', function () {
-	return gulp.src('./src/img/**/*.+(png|jpg|jpeg|gif|svg)')
-		.pipe(cache(imagemin({
-			interlaced: true
-		})))
-		.pipe(gulp.dest('dist/img'))
-});
+  gulp.task('images', function() {
+	return gulp.src('./src/img/**/*.+(jpg|jpeg|svg|png|gif)')
+	  .pipe(imagemin({
+		  progressive: true,
+		  svgoPlugins: [{removeViewBox: false}],
+		  use: [pngquant()]
+	  }))
+	  .pipe(flatten())
+	  .pipe(gulp.dest('./dist/img/'))
+  });
 
-gulp.task('watch', ['browserSync'], function () {
-	gulp.watch('./src/**/*.scss', ['sass']);
-	gulp.watch('./src/*.html', browserSync.reload);
-	gulp.watch('./src/js/**/*.js', browserSync.reload);
+gulp.task('watch', ['browserSync', 'sass', 'browserify'], function () {
+	gulp.watch('src/**/*.scss', ['sass']);
+	gulp.watch('src/*.html', browserSync.reload);
+	gulp.watch('src/js/**/*.js', browserSync.reload);
 });

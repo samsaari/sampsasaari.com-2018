@@ -2,14 +2,42 @@
 <html lang="en">
 
 <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-35707727-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-35707727-1');
+    </script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="description" content="Sampsa Saari, Web Desing, Web Development, Front-end Developer, UX Design, UI Design, Web, Development, Oulu, Front-end">
     <meta name="author" content="Sampsa Saari">
     <title>Sampsa Saari</title>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="../dist/fav/apple-touch-icon.png?v=Jy7q22g8O5">
+    <link rel="icon" type="image/png" sizes="32x32" href="../dist/fav/favicon-32x32.png?v=Jy7q22g8O5">
+    <link rel="icon" type="image/png" sizes="16x16" href="../dist/fav/favicon-16x16.png?v=Jy7q22g8O5">
+    <link rel="manifest" href="../dist/fav/site.webmanifest?v=Jy7q22g8O5">
+    <link rel="mask-icon" href="../dist/fav/safari-pinned-tab.svg?v=Jy7q22g8O5" color="#5bbad5">
+    <link rel="shortcut icon" href="../dist/fav/favicon.ico?v=Jy7q22g8O5">
+    <meta name="msapplication-TileColor" content="#1b1b1b">
+    <meta name="theme-color" content="#ffffff">
+
     <link href="https://fonts.googleapis.com/css?family=Lato:300|Source+Sans+Pro:300,400" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="../dist/css/main.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+    <script defer src="../dist/js/main.js"></script>
+    <script>
+        window.lazyLoadOptions = {
+            /* your lazyload options */
+        };
+        </script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-lazyload/8.5.2/lazyload.min.js"></script>
 </head>
 
 <body>
@@ -66,15 +94,56 @@
             <div class="container">
                 <h2 class="text-center">Portfolio</h2>
                 <div class="portfolio">
-                    <div class="slide"></div>
-                    <div class="slide"></div>
-                    <div class="slide"></div>
+                    <div class="slide">
+                        <a href="">
+                        <div class="img-container"><img data-src="./img/portfolio.jpg" alt="Personal portfolio"></div>
+                        <div class="content">
+                            <p class="info">Design &AMP; Development</p>
+                            <h3>Personal Portfolio</h3>
+                            <div class="line-container">
+                                <div class="line"></div>
+                            </div>
+                            <p>My personal homepage which I recreated to showcase my projects that I have done. Recreation was also learning
+                                    process to learn optimize and design better for mobile devices.</p>
+                            <p class="italic">View on Github</p>
+                        </div>
+                        </a>
+                    </div>
+                    <div class="slide">
+                        <div class="img-container"><img data-src="./img/university.jpg" alt="University project"></div>
+                        <div class="content">
+                            <p class="info">Graphic Design &AMP; UI/UX</p>
+                            <h3>University project</h3>
+                            <div class="line-container">
+                                    <div class="line"></div>
+                                </div>
+                            <p>Our group was tasked by our client to design &amp; develop e-commerce solution using the spree-storefront framework.</p>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <div class="img-container"><img data-src="./img/portfolio.jpg" alt="iOS Style Calculator"></div>
+                        <div class="content">
+                            <p class="info">Design &amp; Development</p>
+                            <h3>iOS Style Calculator</h3>
+                            <div class="line-container">
+                                    <div class="line"></div>
+                                </div>
+                            <p>Created for fun, and also to practice my CSS and JavaScript skills. Tried to make it look like Apple calculator as much as possible.</p>
+                            <p class="italic">View on Codepen</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
         <footer id="contact">
             <div class="container">
-                <a class="button">Get In Touch</a>
+                <div class="social-container">
+                        <a class="linkedin" href=""><i class="fab fa-linkedin-in"></i><span>Linkedin</span></a>
+                        <a class="twitter" href=""><i class="fab fa-twitter"></i><span>Twitter</span></a>
+                        <a class="github" href=""><i class="fab fa-github"></i><span>Github</span></a>
+                </div>
+                <h3>Get In Touch</h3>
+                <div class="email"><a href="mailto:sampsa.saari@gmail.com">sampsa.saari(at)gmail.com</a></div>
             </div>
         </footer>
     </main>
