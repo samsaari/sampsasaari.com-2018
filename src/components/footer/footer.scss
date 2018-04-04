@@ -1,6 +1,10 @@
 footer {
     background: #333;
-    padding: 3rem 0;
+    padding: 3rem 0 0.5rem 0;
+
+    a:hover {
+        color: #cfcfcf;
+    }
 
     h3 {
         text-align: center;
@@ -33,7 +37,7 @@ footer {
         }
     }
     svg, span, svg:hover, span:hover {
-        transition: all 150ms;
+        transition: all 200ms;
     }
 
     .linkedin:hover svg {
@@ -75,4 +79,14 @@ footer {
     a:hover:after {
         width: 100%;
     }
+}
+
+.copyright {
+    font-size: 0.9rem;
+    margin-top: 3rem;
+
+    p {
+        color: #9C9C9C;
+    }
+
 }
